@@ -15,8 +15,11 @@ timeframe = st.selectbox("Select timeframe", ["15m", "30m", "1h", "2h", "3h", "4
 # =============================
 # Exchange Setup
 # =============================
-exchange = ccxt.bybit({
-    'enableRateLimit': True
+exchange = ccxt.kucoin({
+    'enableRateLimit': True,
+    'headers': {
+        'User-Agent': 'Mozilla/5.0 (compatible; StreamlitBot/1.0)'
+    }
 })
 
 limit = 200
