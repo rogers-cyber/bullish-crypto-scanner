@@ -10,7 +10,7 @@ from zoneinfo import ZoneInfo
 # =============================
 st.set_page_config(page_title="Bullish Crypto Scanner", layout="wide")
 st.title("📊 Bullish Crypto Screener")
-timeframe = st.selectbox("Select timeframe", ["15m", "30m", "1h", "2h", "3h", "4h", "1d"], index=1)
+timeframe = st.selectbox("Select timeframe", ["15m", "30m", "1h", "2h", "3h", "4h", "1d"], index=2)
 
 # =============================
 # Exchange Setup
@@ -69,15 +69,25 @@ for i, symbol in enumerate(symbols):
         df['adx'] = adx.adx()
 
         latest = df.iloc[-1]
+        previous = df.iloc[-2]
+
         if (
             latest['ema50'] > latest['ema200'] and
             latest['macd'] > latest['macd_signal'] and
             latest['adx'] > 25
         ):
-            bullish_symbols.append(symbol)
+            price = latest['close']
+            prev_price = previous['close']
+            change_pct = ((price - prev_price) / prev_price) * 100
+
+            bullish_symbols.append({
+                "symbol": symbol,
+                "price": price,
+                "change_pct": change_pct
+            })
 
     except Exception as e:
-        print(f"❌ Error processing {symbol}: {e}")
+        st.warning(f"❌ Error processing {symbol}: {e}")
 
     progress.progress((i + 1) / len(symbols))
     status_text.text(f"Processing {symbol} ({i+1}/{len(symbols)})")
@@ -87,8 +97,11 @@ for i, symbol in enumerate(symbols):
 # =============================
 st.subheader(f"📈 Bullish Coins Detected ({timeframe})")
 if bullish_symbols:
-    for sym in bullish_symbols:
-        st.markdown(f"- ✅ **{sym}**")
+    for coin in bullish_symbols:
+        direction = "↑" if coin["change_pct"] >= 0 else "↓"
+        st.markdown(
+            f"- ✅ **{coin['symbol']}** • Price: `${coin['price']:.4f}` • Change: `{coin['change_pct']:.2f}% {direction}`"
+        )
 else:
     st.info("No strong bullish signals detected.")
 
