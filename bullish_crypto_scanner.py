@@ -94,20 +94,3 @@ else:
 
 time_now = datetime.now(ZoneInfo("Asia/Phnom_Penh")).strftime('%Y-%m-%d %I:%M %p')
 st.caption(f"🕒 Updated at: {time_now}")
-
-# --- Donation Section ---
-st.markdown("---")
-st.markdown("## 💖 Crypto Donations Welcome")
-st.markdown("""
-If this app helped you, consider donating:
-
-- **BTC:** `bc1qlaact2ldakvwqa7l9xd3lhp4ggrvezs0npklte`
-- **TRX / USDT (TRC20):** `TBMrjoyxAuKTxBxPtaWB6uc9U5PX4JMfFu`
-
-You can also scan the QR code below 👇
-""")
-
-try:
-    st.image("eth_qr.png", width=180, caption="ETH / USDT QR")
-except Exception as e:
-    st.warning("⚠️ QR code not found. Please add `eth_qr.png` to the project folder.")
