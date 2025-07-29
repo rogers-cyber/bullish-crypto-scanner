@@ -77,9 +77,7 @@ for i, symbol in enumerate(symbols):
             bullish_symbols.append(symbol)
 
     except Exception as e:
-        st.warning(f"❌ Error processing {symbol}: {e}")
-        continue  # Optional: skip this symbol and continue
-        # print(f"Error processing {symbol}: {e}")
+        print(f"Error processing {symbol}: {e}")
 
     progress.progress((i + 1) / len(symbols))
     status_text.text(f"Processing {symbol} ({i+1}/{len(symbols)})")
