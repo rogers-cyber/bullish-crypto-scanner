@@ -87,7 +87,7 @@ for i, symbol in enumerate(symbols):
             })
 
     except Exception as e:
-        st.warning(f"❌ Error processing {symbol}: {e}")
+        print(f"❌ Error processing {symbol}: {e}")
 
     progress.progress((i + 1) / len(symbols))
     status_text.text(f"Processing {symbol} ({i+1}/{len(symbols)})")
