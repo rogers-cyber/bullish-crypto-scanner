@@ -15,7 +15,13 @@ timeframe = st.selectbox("Select timeframe", ["1h", "4h", "1d"], index=1)
 # =============================
 # Exchange Setup
 # =============================
-exchange = ccxt.binance()
+exchange = ccxt.binance({
+    'enableRateLimit': True,
+    'headers': {
+        'User-Agent': 'Mozilla/5.0 (compatible; StreamlitBot/1.0)'
+    }
+})
+
 limit = 200
 
 symbols = [
@@ -89,6 +95,7 @@ else:
 time_now = datetime.now(ZoneInfo("Asia/Phnom_Penh")).strftime('%Y-%m-%d %I:%M %p')
 st.caption(f"🕒 Updated at: {time_now}")
 
+st.warning(f"❌ Error: {e}")
 
 # --- Donation Section ---
 st.markdown("---")
