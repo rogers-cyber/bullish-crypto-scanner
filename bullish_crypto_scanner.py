@@ -15,7 +15,7 @@ timeframe = st.selectbox("Select timeframe", ["1h", "4h", "1d"], index=1)
 # =============================
 # Exchange Setup
 # =============================
-exchange = ccxt.binance({
+exchange = ccxt.kucoin({
     'enableRateLimit': True,
     'headers': {
         'User-Agent': 'Mozilla/5.0 (compatible; StreamlitBot/1.0)'
