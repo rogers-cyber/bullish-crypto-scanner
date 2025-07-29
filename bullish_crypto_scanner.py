@@ -77,7 +77,9 @@ for i, symbol in enumerate(symbols):
             bullish_symbols.append(symbol)
 
     except Exception as e:
-        print(f"Error processing {symbol}: {e}")
+        st.warning(f"❌ Error processing {symbol}: {e}")
+        continue  # Optional: skip this symbol and continue
+        # print(f"Error processing {symbol}: {e}")
 
     progress.progress((i + 1) / len(symbols))
     status_text.text(f"Processing {symbol} ({i+1}/{len(symbols)})")
@@ -94,8 +96,6 @@ else:
 
 time_now = datetime.now(ZoneInfo("Asia/Phnom_Penh")).strftime('%Y-%m-%d %I:%M %p')
 st.caption(f"🕒 Updated at: {time_now}")
-
-st.warning(f"❌ Error: {e}")
 
 # --- Donation Section ---
 st.markdown("---")
