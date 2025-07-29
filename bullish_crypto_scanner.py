@@ -96,11 +96,16 @@ for i, symbol in enumerate(symbols):
 # Final Output
 # =============================
 st.subheader(f"📈 Bullish Coins Detected ({timeframe})")
+
 if bullish_symbols:
+    # Sort by % change (descending)
+    bullish_symbols = sorted(bullish_symbols, key=lambda x: x["change_pct"], reverse=True)
+
     for coin in bullish_symbols:
         direction = "↑" if coin["change_pct"] >= 0 else "↓"
+        color = "🟢" if coin["change_pct"] >= 0 else "🔴"
         st.markdown(
-            f"- ✅ **{coin['symbol']}** • Price: `${coin['price']:.4f}` • Change: `{coin['change_pct']:.2f}% {direction}`"
+            f"- ✅ **{coin['symbol']}** • Price: `${coin['price']:.4f}` • {color} Change: `{coin['change_pct']:.2f}% {direction}`"
         )
 else:
     st.info("No strong bullish signals detected.")
