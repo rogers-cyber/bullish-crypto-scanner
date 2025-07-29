@@ -77,7 +77,7 @@ for i, symbol in enumerate(symbols):
             bullish_symbols.append(symbol)
 
     except Exception as e:
-        print(f"Error processing {symbol}: {e}")
+        st.warning(f"❌ Error processing {symbol}: {e}")
 
     progress.progress((i + 1) / len(symbols))
     status_text.text(f"Processing {symbol} ({i+1}/{len(symbols)})")
@@ -109,5 +109,5 @@ You can also scan the QR code below 👇
 
 try:
     st.image("eth_qr.png", width=180, caption="ETH / USDT QR")
-except:
-    st.warning("⚠️ eth_qr.png not found. Add it to your project folder to display donation QR.")
+except Exception as e:
+    st.warning("⚠️ QR code not found. Please add `eth_qr.png` to the project folder.")
