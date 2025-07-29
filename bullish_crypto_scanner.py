@@ -10,7 +10,7 @@ from zoneinfo import ZoneInfo
 # =============================
 st.set_page_config(page_title="Bullish Crypto Scanner", layout="wide")
 st.title("📊 Bullish Crypto Screener")
-timeframe = st.selectbox("Select timeframe", ["15m", "30m" "1h", "2h", "3h", "4h", "1d"], index=1)
+timeframe = st.selectbox("Select timeframe", ["15m", "30m", "1h", "2h", "3h", "4h", "1d"], index=1)
 
 # =============================
 # Exchange Setup
