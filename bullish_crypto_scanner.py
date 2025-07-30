@@ -49,6 +49,12 @@ symbols = [
     "CHZ/USDT", "MEW/USDT", "XTZ/USDT", "CKB/USDT"
 ]
 
+# List of known stablecoins to exclude
+stablecoins = ["USDC/USDT", "DAI/USDT", "USDD/USDT", "FDUSD/USDT", "TUSD/USDT", "BUSD/USDT"]
+
+# Filter out stablecoins
+symbols = [s for s in symbols if s not in stablecoins]
+
 # =============================
 # Cached OHLCV Fetching
 # =============================
