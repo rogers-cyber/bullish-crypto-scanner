@@ -119,7 +119,7 @@ if bullish_symbols:
     bullish_symbols = sorted(bullish_symbols, key=lambda x: x["change_pct"], reverse=True)
     df_results = pd.DataFrame(bullish_symbols)
 
-    st.dataframe(df_results)
+    # st.dataframe(df_results)
 
     for coin in bullish_symbols:
         direction = "↑" if coin["change_pct"] >= 0 else "↓"
