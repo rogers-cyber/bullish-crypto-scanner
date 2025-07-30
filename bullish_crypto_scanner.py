@@ -124,8 +124,9 @@ if bullish_symbols:
     for coin in bullish_symbols:
         direction = "↑" if coin["change_pct"] >= 0 else "↓"
         color = "🟢" if coin["change_pct"] >= 0 else "🔴"
+        price_display = (f"{coin['price']:.8f}" if coin['price'] < 0.01 else f"{coin['price']:.4f}")
         st.markdown(
-            f"- ✅ **{coin['symbol']}** • Price: `${coin['price']:.4f}` • {color} Change: `{coin['change_pct']:.2f}% {direction}` • ADX: `{coin['adx']:.1f}` • RSI: `{coin['rsi']:.1f}`"
+            f"- ✅ **{coin['symbol']}** • Price: `${price_display}` • {color} Change: `{coin['change_pct']:.2f}% {direction}` • ADX: `{coin['adx']:.1f}` • RSI: `{coin['rsi']:.1f}`"
         )
 else:
     st.info("No strong bullish signals detected.")
