@@ -143,7 +143,7 @@ if bullish_symbols:
         )
 
         # Show support/resistance ONLY for coins moving UP
-        # if show_details and direction == "↑":
+        if show_details and direction == "↑":
             st.caption(f" 📌 Support: `${coin['support']}` • Resistance: `${coin['resistance']}`")
 
         # if show_details and idx < top_count:
