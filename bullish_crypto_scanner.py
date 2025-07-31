@@ -142,8 +142,12 @@ if bullish_symbols:
             f"- ✅ **{coin['symbol']}** • Price: `${price_display}` • {color} Change: `{coin['change_pct']:.2f}% {direction}` • ADX: `{coin['adx']:.1f}` • RSI: `{coin['rsi']:.1f}`"
         )
 
-        if show_details and idx < top_count:
+        # Show support/resistance ONLY for coins moving UP
+        if show_details and direction == "↑":
             st.caption(f" 📌 Support: `${coin['support']}` • Resistance: `${coin['resistance']}`")
+
+        # if show_details and idx < top_count:
+            # st.caption(f" 📌 Support: `${coin['support']}` • Resistance: `${coin['resistance']}`")
 
 else:
     st.info("No strong bullish signals detected.")
